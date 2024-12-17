@@ -17,7 +17,8 @@ function logOutUser() {
     document.getElementById("logout").style.display = "none";
   }
 }
-function goToProductsPage(){
+
+function goToProductsPage() {
   window.location = "products.html";
 }
 

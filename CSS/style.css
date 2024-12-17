@@ -108,13 +108,116 @@ header {
   padding: 8px 16px;
   text-decoration: none;
   justify-content: right;
+  /* margin-left: 10px */
+  right: -10px;
 }
 
 #logout{
   display: none;
 }
+
 .shopping{
   display: inline-block;
+  margin-right: 15px;
+}
+.shopping:hover{
+  color: var(--themeColor);
+  cursor: pointer;
+}
+
+header .shopping span {
+  top: 0px;
+  right: 0px;
+  color: #fff;
+  display: flex;
+  font-size: 50%;
+  margin-right: .5%;
+  padding: 3px 10px;
+  border-radius: 50%;
+  background: var(--themeColor);
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+}
+
+.Cart {
+  top: 0;
+  left: 100%;
+  width: 500px;
+  height: 100vh;
+  z-index: 1000;
+  position: fixed;
+  transition: 0.5s;
+  background-color: var(--themeColor2);
+}
+
+.active .Cart {
+  left: calc(100% - 500px);
+}
+
+.Cart h1 {
+  margin: 0;
+  height: 80px;
+  display: flex;
+  padding: 0 20px;
+  font-weight: bold;
+  align-items: center;
+  color: var(--themeColor);
+}
+
+.Cart .checkOut {
+  bottom: 0;
+  width: 100%;
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(2, 1fr);
+
+}
+
+.Cart .checkOut div {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+}
+.Cart .checkOut div:hover{
+  transition: 0.3s;
+  box-shadow: 0 0 15px green;
+}
+.Cart .checkOut div:nth-child(2) {
+  color: white;
+  background-color: red;
+}
+
+.listCart li {
+  color: #fff;
+  row-gap: 10px;
+  display: grid;
+  grid-template-columns: 100px repeat(3, 1fr);
+}
+
+.listCart li div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listCart li img {
+  width: 90%;
+}
+
+.listCart li button {
+  background-color: #fff5;
+  border: none;
+}
+
+.listCart .count {
+  margin: 0 10px;
 }
 /**********************************/
 /************* Slider *************/
