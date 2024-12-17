@@ -1,4 +1,4 @@
-const productCard = document.querySelector(".card");
+
 let maxNumberOfProducts = 25;
 
 
@@ -36,10 +36,9 @@ function getProducts() {
         addNewProdunctCard(item, idxOfP);
         idxOfP++;
       });
-    })
-    .catch((error) => {
+    }).catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
     });
 }
 
-document.addEventListener("DOMContentLoaded", getProducts);
+// document.addEventListener("DOMContentLoaded", getProducts);
