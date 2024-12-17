@@ -5,7 +5,7 @@ const MealPrices = [
   17.61, 44.5, 21.25,
 ];
 const productCard = document.querySelector(".card");
-const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+
 
 function addNewProdunctCard(product, idx) {
   let newProduct = productCard.cloneNode(true);
