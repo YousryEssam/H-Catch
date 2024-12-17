@@ -24,3 +24,20 @@ function goToProductsPage() {
 }
 
 document.addEventListener("DOMContentLoaded", isUserIn);
+
+
+//////////////////////
+const MealPrices = [
+  24.39, 32.58, 15.74, 47.12, 12.09, 19.87, 28.42, 40.15, 36.67, 11.39, 25.67,
+  13.99, 45.22, 18.74, 22.18, 30.29, 14.48, 27.96, 39.47, 20.11, 26.83, 48.0,
+  17.61, 44.5, 21.25,
+];
+function createProduct(obj , idx){
+  return {
+    id : obj["idMeal"],
+    name : obj["strCategory"] + " " + obj["strArea"], 
+    imgURL : obj["strMealThumb"], 
+    price : MealPrices[idx] , 
+    description : obj["strIngredient1"] + " " + obj["strIngredient2"]
+  };
+}
