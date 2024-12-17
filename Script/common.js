@@ -46,3 +46,51 @@ function getCookie(cname) {
   }
   return "";
 }
+
+// Local Storage.
+function setToLocalStorage( key , value){
+  localStorage.setItem(key , JSON.stringify(value));
+}
+function removeFromLocalStorage(key){
+  localStorage.removeItem(key);
+}
+function getFromLocalStorage(key){
+  return JSON.parse(localStorage.getItem(key));
+}
+
+
+function addProductToCart (idx){
+  let cartProducts = getFromLocalStorage("cartProducts");
+  if(cartProducts == null) {
+    cartProducts = [];
+    cartProducts.push(idx);
+  }
+  else {
+    cartProducts.push(idx);
+  }
+  console.log(cartProducts);
+  setToLocalStorage("cartProducts" ,cartProducts);
+  // console.log(getFromLocalStorage(cartProducts));
+}
+
+function getProductId(){
+  const imgContainer = document.getElementById("imgcontainer");
+  imgContainer.addEventListener("click", function (event) {
+    let svgElement = event.target.closest(".svg-icon");
+    if (svgElement) {
+      const card = svgElement.closest(".card");
+      if (card) {
+        const elementIdSpan = card.querySelector(".elementId");
+        if (elementIdSpan) {
+          const elementId = elementIdSpan.innerHTML.trim();
+          console.log("Element ID:", elementId);
+          addProductToCart(elementId);
+          /// Complet Here 
+        }
+      }
+    }
+  });
+
+}
+
+document.addEventListener("DOMContentLoaded", getProductId );

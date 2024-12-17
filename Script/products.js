@@ -20,7 +20,7 @@ function createProduct(obj, idx) {
 
 function createProductCard(product) {
   let newProduct = productCard.cloneNode(true);
-  let productIdx = product.idx;
+  let productIdx = product.id;
   let productName = product.name;
   let productPrice = product.price;
   let productImgURL = product.imgURL;
@@ -31,7 +31,7 @@ function createProductCard(product) {
   newProduct.querySelector(".productPrice").innerHTML = productPrice;
   newProduct.querySelector(".productName").innerHTML = productName;
   newProduct.querySelector(".text-body").innerHTML = productDes;
-  newProduct.querySelector(".elementId").innerHTML = String(productIdx);
+  newProduct.querySelector(".elementId").innerHTML = productIdx;
   newProduct.style.display = "inline-block";
   document.getElementById("imgcontainer").appendChild(newProduct);
 }
@@ -53,6 +53,7 @@ function getProducts() {
         idxOfP++;
       });
       console.log(mainProducts);
+      setToLocalStorage("mainProducts" , mainProducts);
     })
     .then(() => {
       for (let i = 0; i < productsLimit; i++) {
