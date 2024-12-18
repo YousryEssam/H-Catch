@@ -1,4 +1,3 @@
-
 function goToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -27,17 +26,17 @@ document.addEventListener("DOMContentLoaded", isUserIn);
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  let expires = "expires="+ d.toUTCString();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
+  var ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
     var c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) == " ") {
       c = c.substring(1);
     }
     if (c.indexOf(name) == 0) {
@@ -48,35 +47,56 @@ function getCookie(cname) {
 }
 
 // Local Storage.
-function setToLocalStorage( key , value){
-  localStorage.setItem(key , JSON.stringify(value));
+function setToLocalStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
-function removeFromLocalStorage(key){
+function removeFromLocalStorage(key) {
   localStorage.removeItem(key);
 }
-function getFromLocalStorage(key){
+function getFromLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
 /// Cart
 
-function upDateCartCnt(){
-  let cartProducts = getFromLocalStorage("cartProducts") || [];
-  let cartCnt = document.querySelector(".quantity").innerHTML = String(cartProducts.length);
+function upDateCartCnt() {
+  let cartProductsCnt =
+    getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
+  let cnt = 0;
+  for (let i = 0; i < cartProductsCnt.length; i++) {
+    cnt += cartProductsCnt[i];
+  }
+  let cartCnt = (document.querySelector(".quantity").innerHTML = String(cnt));
 }
-function addProductToCart (idx){
-  
+function addProductToCart(idx) {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
-  cartProducts.push(idx);
+  let cartProductsCnt =
+    getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
+  let newProduct = true;
+  for (let i = 0; i < cartProducts.length; i++) {
+    if (cartProducts[i] == idx) {
+      newProduct = false;
+      cartProductsCnt[i]++;
+    }
+  }
+  if (newProduct) {
+    cartProducts.push(idx);
+    cartProductsCnt[cartProducts.indexOf(idx)]++;
+  }
 
   console.log(cartProducts);
-  setToLocalStorage("cartProducts" ,cartProducts);
-  console.log(cartProducts.length)
+  setToLocalStorage("cartProducts", cartProducts);
+  setToLocalStorage("cartProductsCnt", cartProductsCnt);
+  console.log(cartProducts.length);
   upDateCartCnt();
 }
 
-// removeFromLocalStorage("cartProducts");
-function getProductId(){
+function clearLS() {
+  removeFromLocalStorage("cartProducts");
+  removeFromLocalStorage("cartProductsCnt");
+}
+// clearLS();
+function getProductId() {
   const imgContainer = document.getElementById("imgcontainer");
   imgContainer.addEventListener("click", function (event) {
     let svgElement = event.target.closest(".svg-icon");
@@ -88,13 +108,12 @@ function getProductId(){
           const elementId = elementIdSpan.innerHTML.trim();
           console.log("Element ID:", elementId);
           addProductToCart(elementId);
-          /// Complet Here 
+          /// Complet Here
         }
       }
     }
   });
-
 }
 
-document.addEventListener("DOMContentLoaded", getProductId );
-document.addEventListener("DOMContentLoaded", upDateCartCnt );
+document.addEventListener("DOMContentLoaded", getProductId);
+document.addEventListener("DOMContentLoaded", upDateCartCnt);

@@ -1,6 +1,6 @@
 const cartElement = document.querySelector(".cartElement");
 
-function createCartElement(product) {
+function createCartElement(product , cnt) {
   let newCartElement = cartElement.cloneNode(true);
   let productIdx = product.id;
   let productName = product.name;
@@ -12,6 +12,8 @@ function createCartElement(product) {
   newCartElement.querySelector(".element-name").innerHTML = productName;
   newCartElement.querySelector(".element-desc").innerHTML = productDes;
   newCartElement.querySelector(".element-price").innerHTML = productPrice;
+  newCartElement.querySelector(".element-cnt").innerHTML = cnt;
+  newCartElement.querySelector(".total-price").innerHTML = cnt * productPrice;
 
   newCartElement.querySelector(".elementId").innerHTML = productIdx;
   newCartElement.style.display = "flex";
@@ -31,13 +33,13 @@ function getFromLocalStorage(key) {
 
 function displayCart() {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
-  console.log(cartProducts);
+  let cartProductsCnt = getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
   let mainProducts = getFromLocalStorage("mainProducts") || [];
-  console.log(mainProducts);
+
   for (let i = 0; i < cartProducts.length; i++) {
     for (let j = 0; j < mainProducts.length; j++) {
       if (cartProducts[i] == mainProducts[j].id) {
-        createCartElement(mainProducts[j]);
+        createCartElement(mainProducts[j]  ,cartProductsCnt[i] );
         break;
       }
     }
