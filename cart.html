@@ -6,6 +6,7 @@
     <title>Shopping Cart</title>
      <!-- Style -->
      <link rel="stylesheet" href="CSS/style.css" />
+     <link rel="stylesheet" href="CSS/cart.css">
      <!-- Favicon -->
      <link href="favicon/favicon.ico" rel="icon" />
      <link
@@ -64,9 +65,33 @@
         </nav>
       </header>
       <!-- Nav   Bar End -->
-    
 
-
+      <div class="cartContainer">
+        <div class="cart-table">
+          <h1> Your Cart </h1>
+          <div class="cartElement">
+            <div class="productImg">
+              <img src="img/food9.jpg" alt="preview">
+            </div>
+            <div class="element-details">
+              <h2 id = "element-name"> Name </h2>
+              <p class="element-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur necessitatibus quidem tempore beatae velit perferendis sit in recusandae quibusdam dolorum ipsa alias dolor eaque, quis eligendi autem fuga et optio.
+              </p>
+            </div>
+            <div class="element-control">
+              <span><i class="fa-solid fa-minus"></i></span>
+              <span id="element-cnt">1</span>
+              <span > &#xa0; &#xd7; &#xa0;</span>
+              <span id="element-price"> 22.5</span>
+              <span > &#xa0; = &#xa0;</span>
+              <span id="total-price"> 22.5</span>
+              <span><i class="fa-solid fa-plus"></i></span>
+              <span id="delete-element"><i class="fa-regular fa-trash-can"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Scroll to Top button Start -->
     <button class="ScrollToTopButton" onclick="goToTop()">
         <svg class="svgIconScrollToTopButton" viewBox="0 0 384 512">
@@ -119,6 +144,6 @@
         </div>
       </footer>
       <!-- Footter End -->
-       
+       <script src="Script/common.js"></script>
 </body>
 </html>

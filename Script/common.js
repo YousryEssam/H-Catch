@@ -58,21 +58,19 @@ function getFromLocalStorage(key){
   return JSON.parse(localStorage.getItem(key));
 }
 
+/// Cart
 
 function addProductToCart (idx){
-  let cartProducts = getFromLocalStorage("cartProducts");
-  if(cartProducts == null) {
-    cartProducts = [];
-    cartProducts.push(idx);
-  }
-  else {
-    cartProducts.push(idx);
-  }
+  let cartCnt = document.getElementById("quantity");
+  let cartProducts = getFromLocalStorage("cartProducts") || [];
+  cartProducts.push(idx);
+
   console.log(cartProducts);
   setToLocalStorage("cartProducts" ,cartProducts);
-  // console.log(getFromLocalStorage(cartProducts));
+  console.log(cartProducts.length)
+  cartCnt.innerHTML = cartProducts.length;
 }
-
+// removeFromLocalStorage("cartProducts");
 function getProductId(){
   const imgContainer = document.getElementById("imgcontainer");
   imgContainer.addEventListener("click", function (event) {
