@@ -15,7 +15,9 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .cartElement{
-    display: flex;
+    /* display: flex; */
+    display: none;
+    margin: .8rem;
     padding: 20px;
     border-radius: 10px;
     background-color: #eee;
@@ -66,4 +68,7 @@
 #delete-element *{
     border:none;
     color: red;
+}
+.elementId{
+    display: none;
 }

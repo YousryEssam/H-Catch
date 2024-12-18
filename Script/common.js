@@ -60,16 +60,21 @@ function getFromLocalStorage(key){
 
 /// Cart
 
+function upDateCartCnt(){
+  let cartProducts = getFromLocalStorage("cartProducts") || [];
+  let cartCnt = document.querySelector(".quantity").innerHTML = String(cartProducts.length);
+}
 function addProductToCart (idx){
-  let cartCnt = document.getElementById("quantity");
+  
   let cartProducts = getFromLocalStorage("cartProducts") || [];
   cartProducts.push(idx);
 
   console.log(cartProducts);
   setToLocalStorage("cartProducts" ,cartProducts);
   console.log(cartProducts.length)
-  cartCnt.innerHTML = cartProducts.length;
+  upDateCartCnt();
 }
+
 // removeFromLocalStorage("cartProducts");
 function getProductId(){
   const imgContainer = document.getElementById("imgcontainer");
@@ -92,3 +97,4 @@ function getProductId(){
 }
 
 document.addEventListener("DOMContentLoaded", getProductId );
+document.addEventListener("DOMContentLoaded", upDateCartCnt );
