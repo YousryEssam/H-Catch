@@ -66,7 +66,7 @@ function upDateCartCnt() {
   for (let i = 0; i < cartProductsCnt.length; i++) {
     cnt += cartProductsCnt[i];
   }
-  let cartCnt = (document.querySelector(".quantity").innerHTML = String(cnt));
+  document.querySelector(".quantity").innerHTML = String(cnt);
 }
 function addProductToCart(idx) {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
@@ -108,7 +108,6 @@ function getProductId() {
           const elementId = elementIdSpan.innerHTML.trim();
           console.log("Element ID:", elementId);
           addProductToCart(elementId);
-          /// Complet Here
         }
       }
     }
