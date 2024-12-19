@@ -135,18 +135,18 @@ header {
 }
 
 header .shopping span {
-  top: 0px;
-  right: 0px;
+  top: 15px;
+  right: 15px;
   color: #fff;
   display: flex;
   font-size: 50%;
   margin-right: 0.5%;
   padding: 3px 10px;
   border-radius: 50%;
-  background: var(--themeColor);
   position: absolute;
   align-items: center;
   justify-content: center;
+  background: var(--themeColor);
 }
 
 /**********************************/
