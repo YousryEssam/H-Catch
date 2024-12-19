@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product View</title>
+    <!-- Style -->
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/viewProduct.css">
+    <!-- Favicon -->
+    <link href="favicon/favicon.ico" rel="icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Nav Bar Start -->
+    <header>
+        <nav class="navbar">
+            <ul class="navList">
+                <li>
+                    <a href="index.html" class="logo"><img src="img/H&CatchSVG.svg" alt="H&Catch-logo" />
+                    </a>
+                </li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Product</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <ul class="navList userList">
+                <li id="logout"><a href="#" onclick="logOutUser()">Logout</a></li>
+                <li id="login"><a href="login.html">Sign-in / Sign-up</a></li>
+                <li>
+                    <a href="cart.html">
+                        <div class="shopping">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="quantity">0</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Nav   Bar End -->
+
+    <div class="viewCont">
+        <div class="wrapper">
+            <div class="product-img">
+                <!-- <img src="http://bit.ly/2tMBBTd" height="420" width="327"> -->
+            </div>
+            <div class="product-info">
+                <div class="product-text">
+                    <h1 class="p-name">Harvest Vase</h1>
+                    <p class="p-des">Harvest Vases are a reinterpretation of peeled fruits and vegetables as functional
+                        objects. The surfaces appear to be sliced and pulled aside, allowing room for growth. </p>
+                </div>
+                <div class="product-price-btn">
+                    <p><span class="price-sp">78</span>$</p>
+                    <button type="button">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Scroll to Top button Start -->
+    <button class="ScrollToTopButton" onclick="goToTop()">
+        <svg class="svgIconScrollToTopButton" viewBox="0 0 384 512">
+            <path
+                d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+            </path>
+        </svg>
+    </button>
+    <!-- Scroll to Top button End -->
+
+
+    <!-- Footter Start -->
+    <footer>
+        <div class="footerContent">
+            <div class="getInTouch">
+                <h3>Get In Touch</h3>
+                <div class="GINElement">
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i> 123 H & Catch, Los
+                        Angeles, USA
+                    </p>
+                </div>
+                <div class="GINElement">
+                    <p><i class="fa-regular fa-envelope"></i> HAC@mail.com</p>
+                </div>
+                <div class="GINElement">
+                    <p><i class="fa-solid fa-phone"></i> +012345678910</p>
+                </div>
+            </div>
+            <div class="followUs">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li>
+                        <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footerCopyRight">
+            <span> Copyright &copy; All Rights Reserved </span>
+            <img src="img/H&CatchSVG.svg" style="width: 30px" alt="H&Catch-logo" />
+        </div>
+    </footer>
+    <!-- Footter End -->
+    <script src="Script/common.js"></script>
+
+</body>
+
+</html>
