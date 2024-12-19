@@ -114,5 +114,12 @@ function getProductId() {
   });
 }
 
+function goToHome(){
+  window.location = "index.html";
+}
+function buyProducts(){
+  alert("")
+  clearLS();
+}
 document.addEventListener("DOMContentLoaded", getProductId);
 document.addEventListener("DOMContentLoaded", upDateCartCnt);

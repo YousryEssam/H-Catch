@@ -1,6 +1,5 @@
 const cartElement = document.querySelector(".cartElement");
-
-function createCartElement(product , cnt) {
+function createCartElement(product, cnt) {
   let newCartElement = cartElement.cloneNode(true);
   let productIdx = product.id;
   let productName = product.name;
@@ -9,9 +8,11 @@ function createCartElement(product , cnt) {
   let productDes = product.description;
 
   newCartElement.querySelector(".productImg").style.backgroundImage =
-  "url('" + productImgURL + "')";
+    "url('" + productImgURL + "')";
   newCartElement.querySelector(".element-name").innerHTML = productName;
-  newCartElement.querySelector(".element-desc").innerHTML = productDes + "Juicy chicken grilled with zesty lemon and fresh herbs, packed with flavor. Perfect with veggies or mashed potatoes.";
+  newCartElement.querySelector(".element-desc").innerHTML =
+    productDes +
+    "Juicy chicken grilled with zesty lemon and fresh herbs, packed with flavor. Perfect with veggies or mashed potatoes.";
   newCartElement.querySelector(".element-price").innerHTML = productPrice;
   newCartElement.querySelector(".element-cnt").innerHTML = cnt;
   newCartElement.querySelector(".total-price").innerHTML = cnt * productPrice;
@@ -34,27 +35,29 @@ function getFromLocalStorage(key) {
 
 function displayCart() {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
-  let cartProductsCnt = getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
+  let cartProductsCnt =
+    getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
   let mainProducts = getFromLocalStorage("mainProducts") || [];
 
   for (let i = 0; i < cartProducts.length; i++) {
     for (let j = 0; j < mainProducts.length; j++) {
       if (cartProducts[i] == mainProducts[j].id) {
-        createCartElement(mainProducts[j]  ,cartProductsCnt[i] );
+        createCartElement(mainProducts[j], cartProductsCnt[i]);
         break;
       }
     }
   }
 }
 
-
 // buttons of cart
-function incrementCnt(idx){
+function incrementCnt(idx) {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
-  let cartProductsCnt = getFromLocalStorage("cartProductsCnt")|| new Array(25).fill(0);
+  let cartProductsCnt =
+    getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
   cartProductsCnt[cartProducts.indexOf(idx)]++;
-  setToLocalStorage("cartProductsCnt" , cartProductsCnt);
+  setToLocalStorage("cartProductsCnt", cartProductsCnt);
   upDateCartCnt();
+  getTotal();
 }
 function getProductIdPlus() {
   const cartTable = document.getElementById("cart-table");
@@ -66,8 +69,11 @@ function getProductIdPlus() {
         const elementIdSpan = elementControl.querySelector(".elementId");
         const elementCnt = elementControl.querySelector(".element-cnt");
         const elementPrice = elementControl.querySelector(".element-price");
-        elementCnt.innerHTML = Number(elementCnt.innerHTML) + 1 ;
-        const total = elementControl.querySelector(".total-price").innerHTML =  (Number(elementCnt.innerHTML) * Number(elementPrice.innerHTML)).toFixed(2); 
+        elementCnt.innerHTML = Number(elementCnt.innerHTML) + 1;
+        const total = (elementControl.querySelector(".total-price").innerHTML =
+          (
+            Number(elementCnt.innerHTML) * Number(elementPrice.innerHTML)
+          ).toFixed(2));
         if (elementIdSpan) {
           const elementId = elementIdSpan.innerHTML.trim();
           console.log("Element ID:", elementId);
@@ -78,15 +84,17 @@ function getProductIdPlus() {
   });
 }
 
-// 
-function decrementCnt(idx){
+//
+function decrementCnt(idx) {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
-  let cartProductsCnt = getFromLocalStorage("cartProductsCnt")|| new Array(25).fill(0);
-  if(cartProductsCnt[cartProducts.indexOf(idx)] > 0 ){
+  let cartProductsCnt =
+    getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
+  if (cartProductsCnt[cartProducts.indexOf(idx)] > 0) {
     cartProductsCnt[cartProducts.indexOf(idx)]--;
   }
-  setToLocalStorage("cartProductsCnt" , cartProductsCnt);
+  setToLocalStorage("cartProductsCnt", cartProductsCnt);
   upDateCartCnt();
+  getTotal();
 }
 
 function getProductIdMinus() {
@@ -99,9 +107,13 @@ function getProductIdMinus() {
         const elementCnt = elementControl.querySelector(".element-cnt");
         const elementIdSpan = elementControl.querySelector(".elementId");
         const elementPrice = elementControl.querySelector(".element-price");
-        if(Number(elementCnt.innerHTML) > 0 ){
-          elementCnt.innerHTML = Number(elementCnt.innerHTML) - 1 ;
-          const total = elementControl.querySelector(".total-price").innerHTML = ( Number(elementCnt.innerHTML) * Number(elementPrice.innerHTML)).toFixed(2); ; 
+        if (Number(elementCnt.innerHTML) > 0) {
+          elementCnt.innerHTML = Number(elementCnt.innerHTML) - 1;
+          const total = (elementControl.querySelector(
+            ".total-price"
+          ).innerHTML = (
+            Number(elementCnt.innerHTML) * Number(elementPrice.innerHTML)
+          ).toFixed(2));
         }
         if (elementIdSpan) {
           const elementId = elementIdSpan.innerHTML.trim();
@@ -113,27 +125,26 @@ function getProductIdMinus() {
   });
 }
 
-
-function deleteFromCart(idx){
+function deleteFromCart(idx) {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
-  let cartProductsCnt = getFromLocalStorage("cartProductsCnt")|| new Array(25).fill(0);
-  cartProductsCnt.splice(cartProducts.indexOf(idx) , 1);
-  cartProducts.splice(cartProducts.indexOf(idx) , 1);
-  setToLocalStorage("cartProductsCnt" , cartProductsCnt);
-  setToLocalStorage("cartProducts" , cartProducts);
+  let cartProductsCnt =
+    getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
+  cartProductsCnt.splice(cartProducts.indexOf(idx), 1);
+  cartProducts.splice(cartProducts.indexOf(idx), 1);
+  setToLocalStorage("cartProductsCnt", cartProductsCnt);
+  setToLocalStorage("cartProducts", cartProducts);
   upDateCartCnt();
+  getTotal();
 }
-
-
 
 function deleteProduct() {
   const cartTable = document.getElementById("cart-table");
 
   cartTable.addEventListener("click", function (event) {
-    const deleteElement = event.target.closest(".delete-element"); 
+    const deleteElement = event.target.closest(".delete-element");
     const cartElement = event.target.closest(".cartElement");
 
-    if (deleteElement && cartElement ) {
+    if (deleteElement && cartElement) {
       cartElement.remove();
 
       const product = deleteElement.closest(".element-control");
@@ -147,13 +158,42 @@ function deleteProduct() {
         }
       }
     }
-
   });
 }
 
+function getTotal() {
+  let totalArr = document.getElementsByClassName("total-price");
+  let totalSum = Number(document.getElementById("Delivery").innerHTML);
+  for (let i = 0; i < totalArr.length; i++) {
+    totalSum += Number(totalArr[i].innerHTML);
+  }
+  document.getElementById("SubTotal").innerHTML = totalSum.toFixed(2);
+  document.getElementById("Total").innerHTML = totalSum.toFixed(2);
+}
 
+const buyButton = document.getElementById("buyButton");
+const popup = document.getElementById("popup");
+const closeButton = document.getElementById("closeButton");
 
+buyButton.addEventListener("click", () => {
+  popup.classList.remove("hidden");
+});
+
+closeButton.addEventListener("click", () => {
+  popup.classList.add("hidden");
+  getTotal();
+  clearLS();
+  upDateCartCnt();
+  goToHome();
+});
+
+popup.addEventListener("click", (e) => {
+  if (e.target === popup) {
+    popup.classList.add("hidden");
+  }
+});
 document.addEventListener("DOMContentLoaded", displayCart);
 document.addEventListener("DOMContentLoaded", deleteProduct);
 document.addEventListener("DOMContentLoaded", getProductIdPlus);
 document.addEventListener("DOMContentLoaded", getProductIdMinus);
+document.addEventListener("DOMContentLoaded", getTotal);
