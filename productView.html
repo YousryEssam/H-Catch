@@ -52,10 +52,9 @@
     </header>
     <!-- Nav   Bar End -->
 
-    <div class="viewCont">
+    <div class="viewCont"  id ="displayElement">
         <div class="wrapper">
             <div class="product-img">
-                <!-- <img src="http://bit.ly/2tMBBTd" height="420" width="327"> -->
             </div>
             <div class="product-info">
                 <div class="product-text">
@@ -65,8 +64,9 @@
                 </div>
                 <div class="product-price-btn">
                     <p><span class="price-sp">78</span>$</p>
-                    <button type="button">Add to cart</button>
+                    <button type="button" class="addToCartButton">Add to cart</button>
                 </div>
+                <span class="elementId" style="display: none;"></span>
             </div>
         </div>
     </div>
@@ -126,6 +126,7 @@
     </footer>
     <!-- Footter End -->
     <script src="Script/common.js"></script>
+    <script src="Script/productView.js"></script>
 
 </body>
 

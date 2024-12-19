@@ -106,7 +106,6 @@ function getProductId() {
         const elementIdSpan = card.querySelector(".elementId");
         if (elementIdSpan) {
           const elementId = elementIdSpan.innerHTML.trim();
-          console.log("Element ID:", elementId);
           addProductToCart(elementId);
         }
       }
@@ -123,3 +122,37 @@ function buyProducts(){
 }
 document.addEventListener("DOMContentLoaded", getProductId);
 document.addEventListener("DOMContentLoaded", upDateCartCnt);
+
+/////////////////////
+
+function goToProductView(idx){
+  let curProductView;
+  for(let i  =0 ; i < mainProducts.length ; i++){
+    if(mainProducts[i].id == idx){
+      curProductView = mainProducts[i];
+      break;
+    }
+  }
+  setToLocalStorage("curProductView" ,curProductView );
+  window.location = "productView.html";
+}
+
+function ProductView() {
+  const imgContainer = document.getElementById("imgcontainer");
+  imgContainer.addEventListener("click", function (event) {
+    let cardImg = event.target.closest(".card-img");
+    if (cardImg) {
+      const card = cardImg.closest(".card");
+      if (card) {
+        const elementIdSpan = card.querySelector(".elementId");
+        if (elementIdSpan) {
+          console.log("Hello");
+          const elementId = elementIdSpan.innerHTML.trim();
+          goToProductView(elementId);
+        }
+      }
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", ProductView);
