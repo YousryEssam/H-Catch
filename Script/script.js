@@ -22,3 +22,10 @@ prev.addEventListener("click", function () {
   document.querySelector(".slide").prepend(items[items.length - 1]);
   newInterval();
 });
+
+
+function showMore(){
+  for (let i = productsLimit ; i < mainProducts.length; i++) {
+    createProductCard(mainProducts[i]);
+  }
+}
