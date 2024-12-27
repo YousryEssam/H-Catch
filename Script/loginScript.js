@@ -1,4 +1,5 @@
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]{3,50}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 let switchCtn = document.querySelector("#switch-cnt");
 let switchC1 = document.querySelector("#switch-c1");
@@ -63,9 +64,9 @@ function signUp() {
   let userPassword = document.getElementById("userSUPassword").value;
   let validationSpan = document.getElementById("validationSpanSU");
   clearValidationSpan();
-  if (userName.length < 3) {
+  if (nameRegex.test(userName) == false) {
     validationSpan.innerHTML +=
-      "Invalid Name , Your name must be more than 2 latters.";
+      "Invalid Name , Your name must be more than 2 latters & only letters.";
     validationSpan.style.display = "inline-block";
   }
   if (emailRegex.test(userEmail) == false) {
