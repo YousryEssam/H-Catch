@@ -175,6 +175,15 @@ function getTotal() {
 }
 
 buyButton.addEventListener("click", () => {
+  let user = JSON.parse(localStorage.getItem("UserIN"));
+  if (user != null) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("logout").style.display = "inline";
+  }
+  else {
+    alert("Must Login first");
+    return ;
+  }
   popup.classList.remove("hidden");
 });
 
