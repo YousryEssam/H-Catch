@@ -1,6 +1,7 @@
 function goToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 function isUserIn() {
   let user = JSON.parse(localStorage.getItem("UserIN"));
   if (user != null) {
@@ -8,6 +9,7 @@ function isUserIn() {
     document.getElementById("logout").style.display = "inline";
   }
 }
+
 function logOutUser() {
   let user = JSON.parse(localStorage.getItem("UserIN"));
   if (user != null) {
@@ -16,13 +18,10 @@ function logOutUser() {
     document.getElementById("logout").style.display = "none";
   }
 }
+
 function goToProductsPage() {
   window.location = "products.html";
 }
-
-document.addEventListener("DOMContentLoaded", isUserIn);
-
-/// Cookies
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -46,7 +45,6 @@ function getCookie(cname) {
   return "";
 }
 
-// Local Storage.
 function setToLocalStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
@@ -57,8 +55,6 @@ function getFromLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-/// Cart
-
 function upDateCartCnt() {
   let cartProductsCnt =
     getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
@@ -68,6 +64,7 @@ function upDateCartCnt() {
   }
   document.querySelector(".quantity").innerHTML = String(cnt);
 }
+
 function addProductToCart(idx) {
   let cartProducts = getFromLocalStorage("cartProducts") || [];
   let cartProductsCnt =
@@ -95,7 +92,7 @@ function clearLS() {
   removeFromLocalStorage("cartProducts");
   removeFromLocalStorage("cartProductsCnt");
 }
-// clearLS();
+
 function getProductId() {
   const imgContainer = document.getElementById("imgcontainer");
   imgContainer.addEventListener("click", function (event) {
@@ -116,14 +113,11 @@ function getProductId() {
 function goToHome(){
   window.location = "index.html";
 }
+
 function buyProducts(){
   alert("")
   clearLS();
 }
-document.addEventListener("DOMContentLoaded", getProductId);
-document.addEventListener("DOMContentLoaded", upDateCartCnt);
-
-/////////////////////
 
 function goToProductView(idx){
   let curProductView;
@@ -155,4 +149,7 @@ function ProductView() {
   });
 }
 
+document.addEventListener("DOMContentLoaded", isUserIn);
 document.addEventListener("DOMContentLoaded", ProductView);
+document.addEventListener("DOMContentLoaded", getProductId);
+document.addEventListener("DOMContentLoaded", upDateCartCnt);

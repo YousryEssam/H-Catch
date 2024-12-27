@@ -14,29 +14,28 @@ function displayViewProduct() {
   displayElement.querySelector(".elementId").innerHTML = productIdx;
 }
 
-document.addEventListener("DOMContentLoaded", displayViewProduct);
-
-
 function addToCart(element) {
-    let idx = element.querySelector(".elementId").innerHTML;
-    let cartProducts = getFromLocalStorage("cartProducts") || [];
-    let cartProductsCnt =
-      getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
-    let newProduct = true;
-    for (let i = 0; i < cartProducts.length; i++) {
-      if (cartProducts[i] == idx) {
-        newProduct = false;
-        cartProductsCnt[i]++;
-      }
+  let idx = element.querySelector(".elementId").innerHTML;
+  let cartProducts = getFromLocalStorage("cartProducts") || [];
+  let cartProductsCnt =
+    getFromLocalStorage("cartProductsCnt") || new Array(25).fill(0);
+  let newProduct = true;
+  for (let i = 0; i < cartProducts.length; i++) {
+    if (cartProducts[i] == idx) {
+      newProduct = false;
+      cartProductsCnt[i]++;
     }
-    if (newProduct) {
-      cartProducts.push(idx);
-      cartProductsCnt[cartProducts.indexOf(idx)]++;
-    }
-  
-    console.log(cartProducts);
-    setToLocalStorage("cartProducts", cartProducts);
-    setToLocalStorage("cartProductsCnt", cartProductsCnt);
-    console.log(cartProducts.length);
-    upDateCartCnt();
   }
+  if (newProduct) {
+    cartProducts.push(idx);
+    cartProductsCnt[cartProducts.indexOf(idx)]++;
+  }
+
+  console.log(cartProducts);
+  setToLocalStorage("cartProducts", cartProducts);
+  setToLocalStorage("cartProductsCnt", cartProductsCnt);
+  console.log(cartProducts.length);
+  upDateCartCnt();
+}
+
+document.addEventListener("DOMContentLoaded", displayViewProduct);

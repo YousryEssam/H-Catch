@@ -1,6 +1,5 @@
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 let switchCtn = document.querySelector("#switch-cnt");
 let switchC1 = document.querySelector("#switch-c1");
 let switchC2 = document.querySelector("#switch-c2");
@@ -36,16 +35,12 @@ let mainF = (e) => {
     switchBtn[i].addEventListener("click", changeForm);
 };
 
-window.addEventListener("load", mainF);
-
-
 function clearValidationSpan() {
   let validationSpanSU = document.getElementById("validationSpanSU");
   validationSpanSU.innerHTML = "";
   let validationSpanSI = document.getElementById("validationSpanSI");
   validationSpanSI.innerHTML = "";
 }
-////
 
 /**
  * Function to create a user object
@@ -61,10 +56,6 @@ function createUser(email, name, password) {
     password: password,
   };
 }
-
-///
-
-
 
 function signUp() {
   let userName = document.getElementById("userSUName").value;
@@ -137,14 +128,14 @@ function signIn() {
   if (validationSpan.innerHTML.length > 0) {
     return;
   }
-  let user =JSON.parse(localStorage.getItem(userEmail));
+  let user = JSON.parse(localStorage.getItem(userEmail));
   if (user == null) {
     validationSpan.innerHTML += "User does not exist.";
     validationSpan.style.display = "inline-block";
     return;
   }
   console.log();
-  if(user.password != userPassword){
+  if (user.password != userPassword) {
     validationSpan.innerHTML += "Wrong Password.";
     validationSpan.style.display = "inline-block";
     return;
@@ -153,9 +144,8 @@ function signIn() {
   window.location = "index.html";
 }
 
-function userIn(user){
-    localStorage.setItem(
-        "UserIN",
-        JSON.stringify(user)
-    );
+function userIn(user) {
+  localStorage.setItem("UserIN", JSON.stringify(user));
 }
+
+window.addEventListener("load", mainF);
